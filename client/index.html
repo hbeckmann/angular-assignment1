@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Find your representative</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <style>body {padding-top:70px;}</style>
+    <style>body {padding-top:70px;}.topbuffer{margin-top:10px;margin-bottom:10px;}.clearfix{clear:both;}</style>
     <!-- TODO You need to put your style imports here -->
   </head>
   <body>
@@ -20,7 +20,7 @@
 
     <div ng-controller="RepsController as reps" class="container">
 
-    <form class="form-inline">
+    <form class="form-inline col-md-12 topbuffer" >
       <div class="form-group">
       <label>
         Search By zip
@@ -30,35 +30,51 @@
       </div>
     </form>
 
-    <form class="form-inline">
+    <form class="form-inline col-md-12 topbuffer">
       <div class="form-group">
       <label>
-        Search By state
+        Search Rep By state
       </label>
         <input class="form-control" ng-model='reps.search.state' />
-        <button class="btn btn-info" type="submit" ng-click="reps.searchByState(reps.search.state)">Search</button>
-
+        <button class="btn btn-info" type="submit" ng-click="reps.searchRepByState(reps.search.state)">Search</button>
     </div>
     </form>
 
-    <form class="form-inline">
+    <form class="form-inline col-md-12 topbuffer">
       <div class="form-group">
       <label>
-        Search By name
+        Search Rep By name
       </label>
         <input class="form-control" ng-model='reps.search.name' />
-        <button class="btn btn-info" type="submit" ng-click="reps.searchByName(reps.search.name)">Search</button>
-      
+        <button class="btn btn-info" type="submit" ng-click="reps.searchRepByName(reps.search.name)">Search</button>
     </div>
     </form>
 
-      <ul class="list-group">
+    <form class="form-inline col-md-12 topbuffer">
+      <div class="form-group">
+      <label>
+        Search Senator By State
+      </label>
+        <input class="form-control" ng-model='sen.search.state' />
+        <button class="btn btn-info" type="submit" ng-click="reps.searchSenByState(sen.search.state)">Search</button>
+    </div>
+    </form>
+
+    <form class="form-inline col-md-12 topbuffer">
+      <div class="form-group">
+      <label>
+        Search Senator By name
+      </label>
+        <input class="form-control" ng-model='sen.search.name' />
+        <button class="btn btn-info" type="submit" ng-click="reps.searchSenByName(sen.search.name)">Search</button>
+    </div>
+    </form>
+
+      <ul class="list-group clearfix topbuffer">
         <li ng-repeat="member in reps.members" class="list-group-item">
             <h4 class="list-group-item-heading">{{member.name}} ({{member.party}})</h4>
         </li>
       </ul>
-
-
 
     </div>
 

@@ -11,19 +11,33 @@
       });
     };
 
-    self.searchByState = function(state) {
+    self.searchRepByState = function(state) {
       reps.repHttp(state, '/reps/by-state/').then(function (data){
           self.members = data;
       });
     };
 
-
-    self.searchByName = function(name) {
+    self.searchRepByName = function(name) {
       reps.repHttp(name, '/reps/by-name/').then(function (data){
           self.members = data;
         });
     };
-  });
+
+
+  self.searchSenByState = function(state) {
+    reps.repHttp(state, '/sens/by-state/').then(function (data){
+        self.members = data;
+      });
+  };
+
+
+self.searchSenByName = function(name) {
+  reps.repHttp(name, '/sens/by-name/').then(function (data){
+      self.members = data;
+    });
+};
+});
+
 
   app.factory('reps', function ($http){
     var host = 'http://dgm-representatives.herokuapp.com';
