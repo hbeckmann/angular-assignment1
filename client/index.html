@@ -20,6 +20,20 @@
 
     <div ng-controller="RepsController as reps" class="container">
 
+      <div class="radio">
+        <label>
+          <input type="radio" ngmodel="reps.congressType" value="reps"/>
+          Representatives
+        </label>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" ngmodel="reps.congressType" value="sens"/>
+          Senators
+        </label>
+      </div>
+
     <form class="form-inline col-md-12 topbuffer" >
       <div class="form-group">
       <label>
