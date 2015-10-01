@@ -2,41 +2,39 @@
   app.controller("RepsController", function (reps) {
 
   var self = this;
+  self.loading = false;
   self.members = [];
   self.congressType = 'reps';
-
-
-    self.searchByZip = function(zip) {
-      reps.allByZip(zip).then(function (data){
-        self.members = data;
-      });
-    };
-
-    self.searchRepByState = function(state) {
-      reps.repsByState(state).then(function (data){
-          self.members = data;
-      });
-    };
-
-    self.searchRepByName = function(name) {
-      reps.repsByName(name).then(function (data){
+  self.apis = [{
+      label:"Zip",
+      method: function (zip) {
+        self.loading = true;
+        reps('all', 'zip', zip).then(function (data){
+          self.loading = false;
           self.members = data;
         });
-    };
+      }
+    },{
+      label:"Last Name",
+      method: function (name) {
+        self.loading = true;
+        reps(self.congressType, 'name', name).then(function (data){
+          self.loading = false;
+          self.members = data;
+        });
+      }
+    },{
+      label: "State",
+      method: function (state) {
+        self.loading = true;
+        reps(self.congressType, 'state', state).then(function (data){
+          self.loading = false;
+          self.members = data;
+        });
+      }
+    }];
 
-
-  self.searchSenByState = function(state) {
-    reps.sensByState(state).then(function (data){
-        self.members = data;
-      });
-  };
-
-
-self.searchSenByName = function(name) {
-  reps.sensByName(name).then(function (data){
-      self.members = data;
-    });
-};
+  self.criteria = self.apis[0];
 
 });
 
@@ -52,11 +50,6 @@ self.searchSenByName = function(name) {
         })
     };
 
-    search.allByZip = search.bind(null, 'all', 'zip');
-    search.repsByName = search.bind(null, 'reps', 'name');
-    search.repsByState = search.bind(null, 'reps', 'state');
-    search.sensBystate = search.bind(null, 'sens', 'state');
-    search.sensByName = search.bind(null, 'sens', 'name');
 
     return search;
 
