@@ -37,8 +37,8 @@
 
       <form class="form-inline">
       <select class="form-control" ng-model="reps.criteria" ng-options="item as item.label for item in reps.apis"></select>
-      <input class="form-control" type="text" ng-model="reps.input" ng-disabled="self.loading" />
-      <button class="btn btn-info" ng-click="reps.criteria.method(reps.input)" type="submit">Submit</button>
+      <input class="form-control" type="text" ng-model="reps.input" ng-disabled="reps.loading" autofocus/>
+      <button class="btn btn-info" ng-click="reps.criteria.method(reps.input)" type="submit" ng-disabled="reps.loading" >Submit</button>
       </form>
 
       <ul class="list-group clearfix topbuffer">
